@@ -15,6 +15,27 @@
                     @endif
 
                     You are logged in!
+
+                    <br>
+
+                    @if (Auth::user()->hasRole('admin'))
+                      Sei un amministratore
+                    @elseif (Auth::user()->hasRole('customer'))
+                      Sei un cliente
+                    @else
+                      Non sei un amministratore né un cliente
+                    @endif
+
+                    <br>
+
+                    @if (Auth::user()->can('edit_product'))
+                      Puoi modificare e gestire i prodotti
+                    @elseif (Auth::user()->can('view_product'))
+                      Puoi vedere i prodotti
+                    @else
+                      Non puoi fare niente
+                    @endif
+
                 </div>
             </div>
         </div>

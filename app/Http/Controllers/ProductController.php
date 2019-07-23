@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+    public function __construct() {
+      $this->middleware('permission:view_product');
+      $this->middleware('permission:edit_product')->except(['index', 'show']);
+    }
 
     public function index()
     {
